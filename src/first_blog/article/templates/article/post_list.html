@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Listesi</title>
+</head>
+<body>
+<h1>Postlar</h1>
+<span>Post Bilgisi: {{request.user}}</span>
+<ul>
+    {% for i in postlar %}
+    <li>
+        {% if not i.draft or i.draft  %}
+
+       <h1> {{i.header}}</h1>
+       <a href="/post/{{i.id}}"> {{i.header}}</a>
+        <p>{{i.content}} </p>
+        {% if i.createdAt == i.updatedAt  %}
+        <p>{{i.createdAt|date}} tarihinde yaratıldı</p>
+        {% else %}
+        <p>{{i.createdAt|date}} tarihinde yaratıldı</p>
+        <p>{{i.updatedAt|date}} tarihinde düzenlendi</p>
+        {% endif %}
+        {% endif %}
+
+    </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
